@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DES.Core/DES.Core.csproj" />
+    <Project Path="src/DES.Deal/DES.Deal.csproj" />
+    <Project Path="src/DES.Demo/DES.Demo.csproj" />
+    <Project Path="src/DES.Des/DES.Des.csproj" />
+    <Project Path="src/DES.Feistel/DES.Feistel.csproj" />
+  </Folder>
+</Solution>
