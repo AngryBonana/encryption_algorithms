@@ -1,4 +1,4 @@
-namespace CryptoLab.Core.Padding;
+namespace DES.Core.Padding;
 
 public enum PaddingMode
 {

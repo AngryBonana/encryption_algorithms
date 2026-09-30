@@ -20,9 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\DES.Core\DES.Core.csproj" />
-    <ProjectReference Include="..\..\src\DES.Feistel\DES.Feistel.csproj" />
-    <ProjectReference Include="..\..\src\DES.Des\DES.Des.csproj" />
-    <ProjectReference Include="..\..\src\DES.Deal\DES.Deal.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace CryptoLab.Core.Padding;
+namespace DES.Core.Padding;
 
 
 public static class Padder

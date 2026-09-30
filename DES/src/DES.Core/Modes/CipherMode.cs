@@ -1,4 +1,4 @@
-namespace CryptoLab.Core.Modes;
+namespace DES.Core.Modes;
 
 public enum CipherMode
 {
