@@ -62,7 +62,7 @@ public static class Padder
 
         
         if (data.Length == 0)
-            throw new Exception();
+            throw new ArgumentOutOfRangeException("Data lenght must be more than 0!");
 
         int padLength = data[^1];
         if (padLength == 0 || padLength > data.Length)
@@ -72,12 +72,12 @@ public static class Padder
         {
             case PaddingMode.PKCS7:
                 for (int i = data.Length - padLength; i < data.Length; i++)
-                    if (data[i] != padLength) throw new Exception();
+                    if (data[i] != padLength) throw new CryptographicException("PKCS7: invalid padding!");
                 break;
 
             case PaddingMode.ANSI_X923:
                 for (int i = data.Length - padLength; i < data.Length - 1; i++)
-                    if (data[i] != 0) throw new Exception();
+                    if (data[i] != 0) throw new CryptographicException("ANSI_X923: invalid padding!");
                 break;
 
             case PaddingMode.ISO10126:
