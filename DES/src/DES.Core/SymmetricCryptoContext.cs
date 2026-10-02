@@ -290,7 +290,7 @@ public sealed class SymmetricCryptoContext
             case CipherMode.RandomDelta:
             {
                 byte[] mask = RandomDeltaMask(_streamBlockIndex++);
-                return _cipher.Encrypt(Xor(block, mask));
+                return Xor(_cipher.Encrypt(mask), block);
             }
             default:
                 throw new NotSupportedException($"Режим {_mode} не поддерживается.");
@@ -339,7 +339,7 @@ public sealed class SymmetricCryptoContext
             case CipherMode.RandomDelta:
             {
                 byte[] mask = RandomDeltaMask(_streamBlockIndex++);
-                return Xor(_cipher.Decrypt(block), mask);
+                return Xor(_cipher.Encrypt(mask), block);
             }
             default:
                 throw new NotSupportedException($"Режим {_mode} не поддерживается.");
@@ -488,7 +488,7 @@ public sealed class SymmetricCryptoContext
         Parallel.For(0, blocks.Length, i =>
         {
             byte[] mask = RandomDeltaMask(i);
-            result[i] = _cipher.Encrypt(Xor(blocks[i], mask));
+            result[i] = Xor(blocks[i], _cipher.Encrypt(mask));
         });
         return result;
     }
@@ -499,7 +499,7 @@ public sealed class SymmetricCryptoContext
         Parallel.For(0, blocks.Length, i =>
         {
             byte[] mask = RandomDeltaMask(i);
-            result[i] = Xor(_cipher.Decrypt(blocks[i]), mask);
+            result[i] = Xor(_cipher.Encrypt(mask), blocks[i]);
         });
         return result;
     }
