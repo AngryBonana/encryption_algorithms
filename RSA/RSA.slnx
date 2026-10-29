@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/RSA.Core/RSA.Core.csproj" />
+    <Project Path="src/RSA.Demo/RSA.Demo.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/RSA.Tests/RSA.Tests.csproj" />
+  </Folder>
+</Solution>
