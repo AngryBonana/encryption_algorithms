@@ -8,7 +8,7 @@ public class SBoxGeneratorTests
 {
     // static readonly, а не property — иначе каждый вызов создаёт
     // new Gf256(0x11B) и гоняет IsIrreducible
-    private static readonly SBoxGenerator Aes = new(new Gf256(0x11B));
+    private static readonly SBoxGenerator Aes = new(new Gf256(0x1B));
 
     [Fact]
     public void SBox_MatchesAesReferenceTable()

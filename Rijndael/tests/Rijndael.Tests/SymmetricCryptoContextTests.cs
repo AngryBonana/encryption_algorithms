@@ -19,7 +19,7 @@ public class SymmetricCryptoContextTests
         byte[]? iv = null,
         byte[]? delta = null)
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 128);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 128);
         var modeParams = delta is null ? Array.Empty<object>() : new object[] { delta };
         return new SymmetricCryptoContext(
             cipher, Key128, mode, padding,
@@ -39,7 +39,7 @@ public class SymmetricCryptoContextTests
     [Fact]
     public void Ctor_NullKey_Throws()
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 128);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 128);
         Assert.Throws<ArgumentNullException>(() =>
             new SymmetricCryptoContext(cipher, null!, CipherMode.ECB, PaddingMode.PKCS7));
     }
@@ -53,7 +53,7 @@ public class SymmetricCryptoContextTests
     [InlineData(CipherMode.RandomDelta)]
     public void Ctor_NonEcbWithoutIv_Throws(CipherMode mode)
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 128);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 128);
         var p = mode == CipherMode.RandomDelta ? new object[] { Delta } : Array.Empty<object>();
         Assert.Throws<ArgumentException>(() =>
             new SymmetricCryptoContext(cipher, Key128, mode, PaddingMode.PKCS7, null, p));
@@ -62,7 +62,7 @@ public class SymmetricCryptoContextTests
     [Fact]
     public void Ctor_WrongIvLength_Throws()
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 128);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 128);
         Assert.Throws<ArgumentException>(() =>
             new SymmetricCryptoContext(cipher, Key128, CipherMode.CBC, PaddingMode.PKCS7, new byte[8]));
     }
@@ -70,7 +70,7 @@ public class SymmetricCryptoContextTests
     [Fact]
     public void Ctor_RandomDeltaWithoutDelta_Throws()
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 128);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 128);
         Assert.Throws<ArgumentException>(() =>
             new SymmetricCryptoContext(cipher, Key128, CipherMode.RandomDelta, PaddingMode.PKCS7, Iv));
     }
@@ -78,7 +78,7 @@ public class SymmetricCryptoContextTests
     [Fact]
     public void Ctor_RandomDeltaWrongDeltaLength_Throws()
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 128);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 128);
         Assert.Throws<ArgumentException>(() =>
             new SymmetricCryptoContext(cipher, Key128, CipherMode.RandomDelta, PaddingMode.PKCS7,
                 Iv, new byte[8]));
@@ -397,7 +397,7 @@ public class SymmetricCryptoContextTests
     public void BlockSize192_256_Roundtrip(int blockBits)
     {
         int blockBytes = blockBits / 8;
-        var cipher = new RijndaelCipher(new Gf256(0x11B), blockBits);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), blockBits);
         var iv = new byte[blockBytes];
         new Random(blockBits).NextBytes(iv);
         var ctx = new SymmetricCryptoContext(

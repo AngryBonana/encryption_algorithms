@@ -8,7 +8,7 @@ public class RijndaelCipherTests
 {
     private static RijndaelCipher Aes128()
     {
-        var c = new RijndaelCipher(new Gf256(0x11B), 128);
+        var c = new RijndaelCipher(new Gf256(0x1B), 128);
         return c;
     }
 
@@ -30,7 +30,7 @@ public class RijndaelCipherTests
     [Fact]
     public void Fips197_AppendixC2_Aes192()
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 128);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 128);
         var key = Hex("000102030405060708090a0b0c0d0e0f1011121314151617");
         var pt = Hex("00112233445566778899aabbccddeeff");
         cipher.SetKey(key);
@@ -42,7 +42,7 @@ public class RijndaelCipherTests
     [Fact]
     public void Fips197_AppendixC3_Aes256()
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 128);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 128);
         var key = Hex("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f");
         var pt = Hex("00112233445566778899aabbccddeeff");
         cipher.SetKey(key);
@@ -54,7 +54,7 @@ public class RijndaelCipherTests
     [Fact]
     public void BlockSize192_Roundtrip()
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 192);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 192);
         cipher.SetKey(Hex("000102030405060708090a0b0c0d0e0f"));
         var pt = new byte[24];
         for (int i = 0; i < pt.Length; i++) pt[i] = (byte)i;
@@ -67,7 +67,7 @@ public class RijndaelCipherTests
     [Fact]
     public void BlockSize256_Roundtrip()
     {
-        var cipher = new RijndaelCipher(new Gf256(0x11B), 256);
+        var cipher = new RijndaelCipher(new Gf256(0x1B), 256);
         cipher.SetKey(Hex("000102030405060708090a0b0c0d0e0f"));
         var pt = new byte[32];
         for (int i = 0; i < pt.Length; i++) pt[i] = (byte)i;
@@ -118,7 +118,7 @@ public class RijndaelCipherTests
     [Fact]
     public void Constructor_ThrowsOnInvalidBlockSize()
     {
-        Assert.Throws<ArgumentException>(() => new RijndaelCipher(new Gf256(0x11B), 100));
+        Assert.Throws<ArgumentException>(() => new RijndaelCipher(new Gf256(0x1B), 100));
     }
 
     [Fact]

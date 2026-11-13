@@ -8,7 +8,7 @@ public class RijndaelRoundFunctionTests
 {
     private static (RijndaelRoundFunction fn, SBoxGenerator sbox) Make(int nb = 4)
     {
-        var gf = new Gf256(0x11B);
+        var gf = new Gf256(0x1B);
         var sbox = new SBoxGenerator(gf);
         return (new RijndaelRoundFunction(gf, sbox, nb), sbox);
     }

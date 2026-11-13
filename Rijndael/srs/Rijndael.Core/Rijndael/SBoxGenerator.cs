@@ -16,7 +16,7 @@ public sealed class SBoxGenerator
         InvSBox = BuildInvSBox();
     }
 
-    private static byte Rotl(byte x, int n) => (byte)((x << n) | (x >> (8 - n)));
+    private static byte Rotl(byte x, int n) => (byte)(((x << n) | (x >> (8 - n))) & 0xFF);
 
     private static byte Affine(byte x)
         => (byte)(x ^ Rotl(x, 1) ^ Rotl(x, 2) ^ Rotl(x, 3) ^ Rotl(x, 4) ^ 0x63);

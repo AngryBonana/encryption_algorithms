@@ -10,7 +10,7 @@ public class RijndaelKeySchedulerTests
     [Fact]
     public void Aes128_ProducesKnownRoundKeys()
     {
-        var gf = new Gf256(0x11B);
+        var gf = new Gf256(0x1B);
         var sbox = new SBoxGenerator(gf);
         var scheduler = new RijndaelKeyScheduler(gf, sbox, 4);
 
@@ -57,7 +57,7 @@ public class RijndaelKeySchedulerTests
     {
         Assert.Equal(nk, keyLen / 4);
         
-        var gf = new Gf256(0x11B);
+        var gf = new Gf256(0x1B);
         var sbox = new SBoxGenerator(gf);
         var scheduler = new RijndaelKeyScheduler(gf, sbox, 4);
         var key = new byte[keyLen];
@@ -70,7 +70,7 @@ public class RijndaelKeySchedulerTests
     [Fact]
     public void BlockSize192_ChangesNr()
     {
-        var gf = new Gf256(0x11B);
+        var gf = new Gf256(0x1B);
         var sbox = new SBoxGenerator(gf);
         // Nb=6, Nk=4 -> Nr = max(6,4)+6 = 12
         var scheduler = new RijndaelKeyScheduler(gf, sbox, 6);
@@ -84,7 +84,7 @@ public class RijndaelKeySchedulerTests
     [Fact]
     public void BlockSize256_ChangesNr()
     {
-        var gf = new Gf256(0x11B);
+        var gf = new Gf256(0x1B);
         var sbox = new SBoxGenerator(gf);
         // Nb=8, Nk=4 -> Nr = max(8,4)+6 = 14
         var scheduler = new RijndaelKeyScheduler(gf, sbox, 8);
@@ -103,7 +103,7 @@ public class RijndaelKeySchedulerTests
     [InlineData(15)]
     public void InvalidNb_Throws(int nb)
     {
-        var gf = new Gf256(0x11B);
+        var gf = new Gf256(0x1B);
         var sbox = new SBoxGenerator(gf);
         Assert.Throws<ArgumentException>(() => new RijndaelKeyScheduler(gf, sbox, nb));
     }
@@ -111,7 +111,7 @@ public class RijndaelKeySchedulerTests
     [Fact]
     public void InvalidKeyLength_Throws()
     {
-        var gf = new Gf256(0x11B);
+        var gf = new Gf256(0x1B);
         var sbox = new SBoxGenerator(gf);
         var scheduler = new RijndaelKeyScheduler(gf, sbox, 4);
         Assert.Throws<ArgumentException>(() => scheduler.GenerateRoundKeys(new byte[10]));

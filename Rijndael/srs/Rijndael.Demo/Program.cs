@@ -18,7 +18,7 @@ if (!File.Exists(inputFile))
 byte[] randomBytes = new byte[50];
 new Random(1).NextBytes(randomBytes);
 
-int[] moduli = {0x11B, 0x12B, 0x12D};
+byte[] moduli = {0x1B, 0x2B, 0x2D};
 
 int[] blockSizes = {128, 192, 256};
 
@@ -29,7 +29,7 @@ foreach (var mode in new[] {CipherMode.CBC, CipherMode.CTR, CipherMode.PCBC, Cip
 {
     foreach (var padding in new[] {PaddingMode.PKCS7, PaddingMode.ANSI_X923, PaddingMode.ISO10126})
     {
-        var gf = new Gf256(0x11B);
+        var gf = new Gf256(0x1B);
         var cipher = new RijndaelCipher(gf, 128);
         var key = GenerateRandomKey(128 / 8);
         var iv = GenerateRandomKey(16);
@@ -46,7 +46,7 @@ foreach (var mode in new[] {CipherMode.CBC, CipherMode.CTR, CipherMode.PCBC, Cip
 
 Console.WriteLine("\nФайл");
 {
-    int modulus = moduli[0];
+    byte modulus = moduli[0];
     int blockBits = blockSizes[0];
     int keyBits = keySizes[0];
 
